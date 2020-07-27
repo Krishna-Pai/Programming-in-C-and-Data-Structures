@@ -1,0 +1,29 @@
+#include<stdio.h>
+main()
+{
+    FILE*fp1;
+    FILE*fp2;
+    FILE*fp3;
+    char name[50],usn[50];
+
+    fp1=fopen("studentname.txt","r");
+    fp2=fopen("USN.txt","r");
+    fp3=fopen("output.txt","w");
+    while(fscanf(fp1,"%s",name)!=EOF)
+    {
+        while(fscanf(fp2,"%s",usn)!=EOF)
+        {
+            fprintf(fp3,"%s\t%s\n",name,usn);
+            break;
+        }
+    }
+    fclose(fp1);
+    fclose(fp2);
+    fclose(fp3);
+    fp3=fopen("output.txt","r");
+    while(fscanf(fp3,"%s%s",name,usn)!=EOF)
+    {
+        printf("%s\t%s\n",name,usn);
+    }
+    fclose(fp3);
+}
